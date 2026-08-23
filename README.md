@@ -1,6 +1,6 @@
 # 🌐 Modelo OSI: Guía Interactiva y Detallada
 
-Un sitio web interactivo tipo blog, moderno y ligero diseñado para estudiantes, entusiastas de las redes y profesionales de TI que buscan comprender en profundidad la arquitectura del **Modelo OSI** (Open Systems Interconnection).
+Un sitio web interactivo tipo blog, moderno y ligero diseñado para estudiantes, entusiastas de las redes y/o profesionales junior que recientemente están ingresando al mundo de la TI, y que buscan comprender en profundidad la arquitectura del **Modelo OSI** (Open Systems Interconnection).
 
 ---
 
