@@ -4,639 +4,362 @@
 <html lang="es">
 
 <head>
-                              <meta charset="UTF-8">
-                              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                              <title>El Modelo OSI Explicado | Abrahamsilva/blog</title>
-                              <style>
-                                                            :root {
-                                                                                          --bg-color: #0f172a;
-                                                                                          --card-bg: #1e293b;
-                                                                                          --accent-blue: #38bdf8;
-                                                                                          --accent-green: #4ade80;
-                                                                                          --accent-purple: #c084fc;
-                                                                                          --text-main: #f8fafc;
-                                                                                          --text-muted: #94a3b8;
-                                                            }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Modelo OSI Explicado | Abrahamsilva/blog</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-green: #4ade80;
+            --accent-purple: #c084fc;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
 
-                                                            * {
-                                                                                          --box-sizing: border-box;
-                                                                                          margin: 0;
-                                                                                          padding: 0;
-                                                                                          font-family: 'Segoe UI', Tahoma, Verdana, Geneva, Tahoma, sans-serif;
-                                                            }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Verdana, Geneva, Tahoma, sans-serif;
+        }
 
-                                                            body {
-                                                                                          background-color: var(--bg-color);
-                                                                                          color: var(--text-main);
-                                                                                          line-height: 1.6;
-                                                                                          padding: 20px;
-                                                            }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-                                                            header {
-                                                                                          text-align: center;
-                                                                                          margin-bottom: 40px;
-                                                                                          padding: 20px 0;
-                                                            }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
 
-                                                            header h1 {
-                                                                                          font-size: 2.5rem;
-                                                                                          color: var(--accent-blue);
-                                                                                          margin-bottom: 10px;
-                                                            }
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
-                                                            header p {
-                                                                                          color: var(--text-muted);
-                                                                                          font-size: 1.1rem;
-                                                            }
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            text-align: center;
+        }
 
-                                                            .container {
-                                                                                          max-width: 900px;
-                                                                                          margin: 0 auto;
-                                                            }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-                                                            .osi-stack {
-                                                                                          display: flex;
-                                                                                          flex-direction: column;
-                                                                                          gap: 15px;
-                                                            }
+        .osi-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
 
-                                                            .layer-card {
-                                                                                          background-color: var(--card-bg);
-                                                                                          border-left: 6px solid var(--accent-blue);
-                                                                                          border-radius: 8px;
-                                                                                          padding: 20px;
-                                                                                          cursor: pointer;
-                                                                                          transition: transform 0.2s ease, box-shadow 0.2s ease;
-                                                            }
+        .layer-card {
+            background-color: var(--card-bg);
+            border-left: 6px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+            text-align: center;
+        }
 
-                                                            .layer-card:hover {
-                                                                                          transform: translateX(5px);
-                                                                                          box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
-                                                            }
+        .layer-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
+        }
 
-                                                            .layer-header {
-                                                                                          display: flex;
-                                                                                          justify-content: space-between;
-                                                                                          align-items: center;
-                                                            }
+        .layer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-                                                            .layer-number {
-                                                                                          font-weight: bold;
-                                                                                          color: var(--accent-blue);
-                                                                                          font-size: 0.9rem;
-                                                                                          text-transform: uppercase;
-                                                                                          letter-spacing: 1px;
-                                                            }
+        .layer-header > div {
+            width: 100%;
+            text-align: center;
+        }
 
-                                                            .layer-title {
-                                                                                          font-size: 1.4rem;
-                                                                                          margin: 5px 0;
-                                                            }
+        .layer-number {
+            font-weight: bold;
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            text-align: center;
+        }
 
-                                                            .layer-details {
-                                                                                          max-height: 0;
-                                                                                          overflow: hidden;
-                                                                                          transition: max-height 0.3s ease-out;
-                                                                                          margin-top: 0;
-                                                            }
+        .layer-title {
+            font-size: 1.4rem;
+            margin: 5px 0;
+            text-align: center;
+        }
 
-                                                            .layer-card.active .layer-details {
-                                                                                          /*Corregido */
-                                                                                          max-height: 1000px;
-                                                                                          margin-top: 15px;
-                                                                                          border-top: 1px solid #334155;
-                                                                                          margin-top: 15px;
-                                                            }
+        .layer-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-top: 0;
+            text-align: center;
+        }
 
-                                                            .badge-container {
-                                                                                          display: flex;
-                                                                                          gap: 8px;
-                                                                                          flex-wrap: wrap;
-                                                                                          margin-top: 10px;
-                                                            }
+        .layer-details p {
+            text-align: center;
+        }
 
-                                                            .badge {
-                                                                                          background-color: #334155;
-                                                                                          color: var(--accent-green);
-                                                                                          padding: 4px 10px;
-                                                                                          border-radius: 4px;
-                                                                                          font-size: 0.85rem;
-                                                                                          font-weight: 600;
-                                                            }
+        .layer-card.active .layer-details {
+            max-height: 1000px;
+            margin-top: 15px;
+            border-top: 1px solid #334155;
+            padding-top: 15px;
+        }
 
-                                                            /* Estilo para la Capa 8 */
-                                                            .layer-8 {
-                                                                                          border-left-color: var(--accent-purple);
-                                                                                          background: linear-gradient(135deg, #1e293b 0%, #2e1065 100%);
-                                                                                          margin-top: 40px;
-                                                            }
+        .badge-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            justify-content: center;
+        }
 
-                                                            .layer-8 .layer-number {
-                                                                                          color: var(--accent-purple);
-                                                            }
+        .badge {
+            background-color: #334155;
+            color: var(--accent-green);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
 
-                                                            .easter-egg-tag {
-                                                                                          background-color: var(--accent-purple);
-                                                                                          color: #fff;
-                                                                                          padding: 2px 8px;
-                                                                                          border-radius: 12px;
-                                                                                          font-size: 0.75rem;
-                                                                                          font-weight: bold;
-                                                            }
+        /* Estilo para la Capa 8 */
+        .layer-8 {
+            border-left-color: var(--accent-purple);
+            background: linear-gradient(135deg, #1e293b 0%, #2e1065 100%);
+            margin-top: 40px;
+        }
 
-                                                            footer {
-                                                                                          text-align: center;
-                                                                                          margin-top: 50px;
-                                                                                          padding: 20px;
-                                                                                          color: var(--text-muted);
-                                                                                          font-size: 0.9rem;
-                                                            }
-                              </style>
+        .layer-8 .layer-number {
+            color: var(--accent-purple);
+        }
+
+        .easter-egg-tag {
+            background-color: var(--accent-purple);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
 
-                              <div class="container">
-                                                            <header>
-                                                                                          <h1>Modelo OSI Interactivo
-                                                                                          </h1>
-                                                                                          <p>Haz clic en cualquier capa para
-                                                                                                                        explorar
-                                                                                                                        sus
-                                                                                                                        detalles,
-                                                                                                                        protocolos
-                                                                                                                        y
-                                                                                                                        dispositivos.
-                                                                                          </p>
-                                                            </header>
+    <div class="container">
+        <header>
+            <h1>Modelo OSI Interactivo</h1>
+            <p>Haz clic en cualquier capa para explorar sus detalles, protocolos y dispositivos.</p>
+        </header>
 
+        <main class="osi-stack">
+            <!-- Capa 1 -->
+            <div class="layer-card" onclick="toggleLayer(this)">
+                <div class="layer-header">
+                    <div>
+                        <span class="layer-number">Capa 1</span>
+                        <h2 class="layer-title">Física</h2>
+                    </div>
+                    <span>▼</span>
+                </div>
+                <div class="layer-details">
+                    <p>Transmisión de bits crudos (0s y 1s) a través del medion físico (voltaje, impulsos de luz o ondas de radio).</p>
+                    <div class="badge-container">
+                        <span class="badge">Cables UTP / Fibra Óptica</span>
+                        <span class="badge">Hubs</span>
+                        <span class="badge">Repetidores</span>
+                    </div>
+                </div>
+            </div>
 
-                                                            <main class="osi-stack">
-                                                                                          <!-- Capa 1 -->
-                                                                                          <div class="layer-card"
-                                                                                                                        onclick="toggleLayer(this)">
-                                                                                                                        <div
-                                                                                                                                                      class="layer-header">
-                                                                                                                                                      <div>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="layer-number">Capa
-                                                                                                                                                                                                                  1</span>
-                                                                                                                                                                                    <h2
-                                                                                                                                                                                                                  class="layer-title">
-                                                                                                                                                                                                                  Física
-                                                                                                                                                                                    </h2>
-                                                                                                                                                      </div>
-                                                                                                                                                      <span>▼</span>
-                                                                                                                        </div>
-                                                                                                                        <div
-                                                                                                                                                      class="layer-details">
-                                                                                                                                                      <p>Transmisión de bits crudos (0s
-                                                                                                                                                                                    y
-                                                                                                                                                                                    1s)
-                                                                                                                                                                                    a
-                                                                                                                                                                                    través
-                                                                                                                                                                                    del
-                                                                                                                                                                                    medio
-                                                                                                                                                                                    físico
-                                                                                                                                                                                    (voltaje,
-                                                                                                                                                                                    impulsos
-                                                                                                                                                                                    de
-                                                                                                                                                                                    luz
-                                                                                                                                                                                    o
-                                                                                                                                                                                    ondas
-                                                                                                                                                                                    de
-                                                                                                                                                                                    radio).
-                                                                                                                                                      </p>
-                                                                                                                                                      <div
-                                                                                                                                                                                    class="badge-container">
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">Cables
-                                                                                                                                                                                                                  UTP
-                                                                                                                                                                                                                  /
-                                                                                                                                                                                                                  Fibra
-                                                                                                                                                                                                                  Óptica</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">Hubs</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">Repetidores</span>
-                                                                                                                                                      </div>
-                                                                                                                        </div>
-                                                                                          </div>
+            <!-- Capa 2 -->
+            <div class="layer-card" onclick="toggleLayer(this)">
+                <div class="layer-header">
+                    <div>
+                        <span class="layer-number">Capa 2</span>
+                        <h2 class="layer-title">Enlace de Datos</h2>
+                    </div>
+                    <span>▼</span>
+                </div>
+                <div class="layer-details">
+                    <p>Transfiere tramas de datos entre nodos en la misma red local. Maneja el direccionamiento físico (MAC).</p>
+                    <div class="badge-container">
+                        <span class="badge">Ethernet</span>
+                        <span class="badge">Wi-Fi (802.11)</span>
+                        <span class="badge">Direcciones MAC</span>
+                        <span class="badge">Switches</span>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Capa 3 -->
+            <div class="layer-card" onclick="toggleLayer(this)">
+                <div class="layer-header">
+                    <div>
+                        <span class="layer-number">Capa 3</span>
+                        <h2 class="layer-title">Red</h2>
+                    </div>
+                    <span>▼</span>
+                </div>
+                <div class="layer-details">
+                    <p>Determina la mejor ruta lógica (direccionamiento IP y enrutamiento) para enviar paquetes entre redes distintas.</p>
+                    <div class="badge-container">
+                        <span class="badge">IPv4 / IPv6</span>
+                        <span class="badge">ICMP (Ping)</span>
+                        <span class="badge">Routers</span>
+                    </div>
+                </div>
+            </div>
 
-                                                                                          <!-- Capa 2 -->
-                                                                                          <div class="layer-card"
-                                                                                                                        onclick="toggleLayer(this)">
-                                                                                                                        <div
-                                                                                                                                                      class="layer-header">
-                                                                                                                                                      <div>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="layer-number">Capa
-                                                                                                                                                                                                                  2</span>
-                                                                                                                                                                                    <h2
-                                                                                                                                                                                                                  class="layer-title">
-                                                                                                                                                                                                                  Enlace
-                                                                                                                                                                                                                  de
-                                                                                                                                                                                                                  Datos
-                                                                                                                                                                                    </h2>
-                                                                                                                                                      </div>
-                                                                                                                                                      <span>▼</span>
-                                                                                                                        </div>
-                                                                                                                        <div
-                                                                                                                                                      class="layer-details">
-                                                                                                                                                      <p>Transfiere tramas de datos entre
-                                                                                                                                                                                    nodos
-                                                                                                                                                                                    en
-                                                                                                                                                                                    la
-                                                                                                                                                                                    misma
-                                                                                                                                                                                    red
-                                                                                                                                                                                    local.
-                                                                                                                                                                                    Maneja
-                                                                                                                                                                                    el
-                                                                                                                                                                                    direccionamiento
-                                                                                                                                                                                    físico
-                                                                                                                                                                                    (MAC).
-                                                                                                                                                      </p>
-                                                                                                                                                      <div
-                                                                                                                                                                                    class="badge-container">
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">Ethernet</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">Wi-Fi
-                                                                                                                                                                                                                  (802.11)</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">Direcciones
-                                                                                                                                                                                                                  MAC</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">Switches</span>
-                                                                                                                                                      </div>
-                                                                                                                        </div>
-                                                                                          </div>
+            <!-- Capa 4 -->
+            <div class="layer-card" onclick="toggleLayer(this)">
+                <div class="layer-header">
+                    <div>
+                        <span class="layer-number">Capa 4</span>
+                        <h2 class="layer-title">Transporte</h2>
+                    </div>
+                    <span>▼</span>
+                </div>
+                <div class="layer-details">
+                    <p>Garantiza la transferencia confiable o rápida de datos entre hosts. Define el control de flujo y la corrección de errores.</p>
+                    <div class="badge-container">
+                        <span class="badge">TCP</span>
+                        <span class="badge">UDP</span>
+                        <span class="badge">Puertos (80, 443, etc.)</span>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Capa 5 -->
+            <div class="layer-card" onclick="toggleLayer(this)">
+                <div class="layer-header">
+                    <div>
+                        <span class="layer-number">Capa 5</span>
+                        <h2 class="layer-title">Sesión</h2>
+                    </div>
+                    <span>▼</span>
+                </div>
+                <div class="layer-details">
+                    <p>Establece, gestiona y finaliza las conexiones (sesiones) entre las aplicaciones en ambos extremos.</p>
+                    <div class="badge-container">
+                        <span class="badge">NetBIOS</span>
+                        <span class="badge">PPTP</span>
+                        <span class="badge">RPC</span>
+                    </div>
+                </div>
+            </div>
 
-                                                                                          <!-- Capa 3 -->
-                                                                                          <div class="layer-card"
-                                                                                                                        onclick="toggleLayer(this)">
-                                                                                                                        <div
-                                                                                                                                                      class="layer-header">
-                                                                                                                                                      <div>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="layer-number">Capa
-                                                                                                                                                                                                                  3</span>
-                                                                                                                                                                                    <h2
-                                                                                                                                                                                                                  class="layer-title">
-                                                                                                                                                                                                                  Red
-                                                                                                                                                                                    </h2>
-                                                                                                                                                      </div>
-                                                                                                                                                      <span>▼</span>
-                                                                                                                        </div>
-                                                                                                                        <div
-                                                                                                                                                      class="layer-details">
-                                                                                                                                                      <p>Determina la mejor ruta lógica
-                                                                                                                                                                                    (direccionamiento
-                                                                                                                                                                                    IP
-                                                                                                                                                                                    y
-                                                                                                                                                                                    enrutamiento)
-                                                                                                                                                                                    para
-                                                                                                                                                                                    enviar
-                                                                                                                                                                                    paquetes
-                                                                                                                                                                                    entre
-                                                                                                                                                                                    redes
-                                                                                                                                                                                    distintas.
-                                                                                                                                                      </p>
-                                                                                                                                                      <div
-                                                                                                                                                                                    class="badge-container">
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">IPv4
-                                                                                                                                                                                                                  /
-                                                                                                                                                                                                                  IPv6</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">ICMP
-                                                                                                                                                                                                                  (Ping)</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">Routers</span>
-                                                                                                                                                      </div>
-                                                                                                                        </div>
-                                                                                          </div>
+            <!-- Capa 6 -->
+            <div class="layer-card" onclick="toggleLayer(this)">
+                <div class="layer-header">
+                    <div>
+                        <span class="layer-number">Capa 6</span>
+                        <h2 class="layer-title">Presentación</h2>
+                    </div>
+                    <span>▼</span>
+                </div>
+                <div class="layer-details">
+                    <p>Se encarga del formato, cifrado y compresión de los datos para que sean interpretables por la capa de aplicación.</p>
+                    <div class="badge-container">
+                        <span class="badge">SSL / TLS</span>
+                        <span class="badge">JPEG / PNG</span>
+                        <span class="badge">ASCII</span>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Capa 7 -->
+            <div class="layer-card" onclick="toggleLayer(this)">
+                <div class="layer-header">
+                    <div>
+                        <span class="layer-number">Capa 7</span>
+                        <h2 class="layer-title">Aplicación</h2>
+                    </div>
+                    <span>▼</span>
+                </div>
+                <div class="layer-details">
+                    <p>Interfaz directa con las aplicaciones del usuario final. Proporciona servicios de red a las aplicaciones de software.</p>
+                    <div class="badge-container">
+                        <span class="badge">HTTP / HTTPS</span>
+                        <span class="badge">FTP</span>
+                        <span class="badge">DNS</span>
+                        <span class="badge">SMTP</span>
+                    </div>
+                </div>
+            </div>
 
-                                                                                          <!-- Capa 4 -->
-                                                                                          <div class="layer-card"
-                                                                                                                        onclick="toggleLayer(this)">
-                                                                                                                        <div
-                                                                                                                                                      class="layer-header">
-                                                                                                                                                      <div>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="layer-number">Capa
-                                                                                                                                                                                                                  4</span>
-                                                                                                                                                                                    <h2
-                                                                                                                                                                                                                  class="layer-title">
-                                                                                                                                                                                                                  Transporte
-                                                                                                                                                                                    </h2>
-                                                                                                                                                      </div>
-                                                                                                                                                      <span>▼</span>
-                                                                                                                        </div>
-                                                                                                                        <div
-                                                                                                                                                      class="layer-details">
-                                                                                                                                                      <p>Garantiza la transferencia confiable
-                                                                                                                                                                                    o
-                                                                                                                                                                                    rápida
-                                                                                                                                                                                    de
-                                                                                                                                                                                    datos
-                                                                                                                                                                                    entre
-                                                                                                                                                                                    hosts.
-                                                                                                                                                                                    Define
-                                                                                                                                                                                    el
-                                                                                                                                                                                    control
-                                                                                                                                                                                    de
-                                                                                                                                                                                    flujo
-                                                                                                                                                                                    y
-                                                                                                                                                                                    la
-                                                                                                                                                                                    corrección
-                                                                                                                                                                                    de
-                                                                                                                                                                                    errores.
-                                                                                                                                                      </p>
-                                                                                                                                                      <div
-                                                                                                                                                                                    class="badge-container">
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">TCP</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">UDP</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">Puertos
-                                                                                                                                                                                                                  (80,
-                                                                                                                                                                                                                  443,
-                                                                                                                                                                                                                  etc.)</span>
-                                                                                                                                                      </div>
-                                                                                                                        </div>
-                                                                                          </div>
+            <!-- Capa 8: Curiosidad -->
+            <div class="layer-card layer-8" onclick="toggleLayer(this)">
+                <div class="layer-header">
+                    <div>
+                        <span class="layer-number">Capa 8 <span class="easter-egg-tag">Curiosidad / No Oficial</span></span>
+                        <h2 class="layer-title">La Capa del Usuario (O Capa Política)</h2>
+                    </div>
+                    <span>▼</span>
+                </div>
+                <div class="layer-details">
+                    <p>🤖 <strong>¿Sabías que...?</strong> En la cultura informática, la "Capa 8" se refiere sarcásticamente al <strong>ser humano</strong> que opera el equipo o a las políticas de la organización.</p>
+                    <br>
+                    <p>Se estima en broma que más del 80% de las fallas críticas de red catalogadas como "misteriosas" corresponden a errores de Capa 8, conocidos comúnmente como códigos de error <strong>PEBCAK</strong> (<em>Problem Exists Between Chair And Keyboard</em>) o <strong>Error ID-10-T</strong>.</p>
+                </div>
+            </div>
+        </main>
 
+        <footer>
+            <p>Esta pagina esta en un alojamiento gratuito con GitHub Pages 🚀 | Blog de Redes y Telecomunicaciones @Abrahamsilva209</p>
+        </footer>
+    </div>
 
-                                                                                          <!-- Capa 5 -->
-                                                                                          <div class="layer-card"
-                                                                                                                        onclick="toggleLayer(this)">
-                                                                                                                        <div
-                                                                                                                                                      class="layer-header">
-                                                                                                                                                      <div>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="layer-number">Capa
-                                                                                                                                                                                                                  5</span>
-                                                                                                                                                                                    <h2
-                                                                                                                                                                                                                  class="layer-title">
-                                                                                                                                                                                                                  Sesión
-                                                                                                                                                                                    </h2>
-                                                                                                                                                      </div>
-                                                                                                                                                      <span>▼</span>
-                                                                                                                        </div>
-                                                                                                                        <div
-                                                                                                                                                      class="layer-details">
-                                                                                                                                                      <p>Establece, gestiona y finaliza
-                                                                                                                                                                                    las
-                                                                                                                                                                                    conexiones
-                                                                                                                                                                                    (sesiones)
-                                                                                                                                                                                    entre
-                                                                                                                                                                                    las
-                                                                                                                                                                                    aplicaciones
-                                                                                                                                                                                    en
-                                                                                                                                                                                    ambos
-                                                                                                                                                                                    extremos.
-                                                                                                                                                      </p>
-                                                                                                                                                      <div
-                                                                                                                                                                                    class="badge-container">
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">NetBIOS</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">PPTP</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">RPC</span>
-                                                                                                                                                      </div>
-                                                                                                                        </div>
-                                                                                          </div>
+    <script>
+        function toggleLayer(element) {
+            const allCards = document.querySelectorAll('.layer-card');
+            allCards.forEach(card => {
+                if (card !== element) {
+                    card.classList.remove('active');
+                }
+            });
 
-
-                                                                                          <!-- Capa 6 -->
-                                                                                          <div class="layer-card"
-                                                                                                                        onclick="toggleLayer(this)">
-                                                                                                                        <div
-                                                                                                                                                      class="layer-header">
-                                                                                                                                                      <div>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="layer-number">Capa
-                                                                                                                                                                                                                  6</span>
-                                                                                                                                                                                    <h2
-                                                                                                                                                                                                                  class="layer-title">
-                                                                                                                                                                                                                  Presentación
-                                                                                                                                                                                    </h2>
-                                                                                                                                                      </div>
-                                                                                                                                                      <span>▼</span>
-                                                                                                                        </div>
-                                                                                                                        <div
-                                                                                                                                                      class="layer-details">
-                                                                                                                                                      <p>Se encarga del formato, cifrado
-                                                                                                                                                                                    y
-                                                                                                                                                                                    compresión
-                                                                                                                                                                                    de
-                                                                                                                                                                                    los
-                                                                                                                                                                                    datos
-                                                                                                                                                                                    para
-                                                                                                                                                                                    que
-                                                                                                                                                                                    sean
-                                                                                                                                                                                    interpretables
-                                                                                                                                                                                    por
-                                                                                                                                                                                    la
-                                                                                                                                                                                    capa
-                                                                                                                                                                                    de
-                                                                                                                                                                                    aplicación.
-                                                                                                                                                      </p>
-                                                                                                                                                      <div
-                                                                                                                                                                                    class="badge-container">
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">SSL
-                                                                                                                                                                                                                  /
-                                                                                                                                                                                                                  TLS</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">JPEG
-                                                                                                                                                                                                                  /
-                                                                                                                                                                                                                  PNG</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">ASCII</span>
-                                                                                                                                                      </div>
-                                                                                                                        </div>
-                                                                                          </div>
-
-
-                                                                                          <!-- Capa 7 -->
-                                                                                          <div class="layer-card"
-                                                                                                                        onclick="toggleLayer(this)">
-                                                                                                                        <div
-                                                                                                                                                      class="layer-header">
-                                                                                                                                                      <div>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="layer-number">Capa
-                                                                                                                                                                                                                  7</span>
-                                                                                                                                                                                    <h2
-                                                                                                                                                                                                                  class="layer-title">
-                                                                                                                                                                                                                  Aplicación
-                                                                                                                                                                                    </h2>
-                                                                                                                                                      </div>
-                                                                                                                                                      <span>▼</span>
-                                                                                                                        </div>
-                                                                                                                        <div
-                                                                                                                                                      class="layer-details">
-                                                                                                                                                      <p>Interfaz directa con las aplicaciones
-                                                                                                                                                                                    del
-                                                                                                                                                                                    usuario
-                                                                                                                                                                                    final.
-                                                                                                                                                                                    Proporciona
-                                                                                                                                                                                    servicios
-                                                                                                                                                                                    de
-                                                                                                                                                                                    red
-                                                                                                                                                                                    a
-                                                                                                                                                                                    las
-                                                                                                                                                                                    aplicaciones
-                                                                                                                                                                                    de
-                                                                                                                                                                                    software.
-                                                                                                                                                      </p>
-                                                                                                                                                      <div
-                                                                                                                                                                                    class="badge-container">
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">HTTP
-                                                                                                                                                                                                                  /
-                                                                                                                                                                                                                  HTTPS</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">FTP</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">DNS</span>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="badge">SMTP</span>
-                                                                                                                                                      </div>
-                                                                                                                        </div>
-                                                                                          </div>
-
-
-                                                                                          <!-- Capa 8: Curiosidad -->
-                                                                                          <div class="layer-card layer-8"
-                                                                                                                        onclick="toggleLayer(this)">
-                                                                                                                        <div
-                                                                                                                                                      class="layer-header">
-                                                                                                                                                      <div>
-                                                                                                                                                                                    <span
-                                                                                                                                                                                                                  class="layer-number">Capa
-                                                                                                                                                                                                                  8
-                                                                                                                                                                                                                  <span
-                                                                                                                                                                                                                                                class="easter-egg-tag">Curiosidad
-                                                                                                                                                                                                                                                /
-                                                                                                                                                                                                                                                No
-                                                                                                                                                                                                                                                Oficial</span></span>
-                                                                                                                                                                                    <h2
-                                                                                                                                                                                                                  class="layer-title">
-                                                                                                                                                                                                                  La
-                                                                                                                                                                                                                  Capa
-                                                                                                                                                                                                                  del
-                                                                                                                                                                                                                  Usuario
-                                                                                                                                                                                                                  (O
-                                                                                                                                                                                                                  Capa
-                                                                                                                                                                                                                  Política)
-                                                                                                                                                                                    </h2>
-                                                                                                                                                      </div>
-                                                                                                                                                      <span>▼</span>
-                                                                                                                        </div>
-                                                                                                                        <div
-                                                                                                                                                      class="layer-details">
-                                                                                                                                                      <p>🤖 <strong>¿Sabías que...?</strong>
-                                                                                                                                                                                    En
-                                                                                                                                                                                    la
-                                                                                                                                                                                    cultura
-                                                                                                                                                                                    informática,
-                                                                                                                                                                                    la
-                                                                                                                                                                                    "Capa
-                                                                                                                                                                                    8"
-                                                                                                                                                                                    se
-                                                                                                                                                                                    refiere
-                                                                                                                                                                                    sarcásticamente
-                                                                                                                                                                                    al
-                                                                                                                                                                                    <strong>ser
-                                                                                                                                                                                                                  humano</strong>
-                                                                                                                                                                                    que
-                                                                                                                                                                                    opera
-                                                                                                                                                                                    el
-                                                                                                                                                                                    equipo
-                                                                                                                                                                                    o
-                                                                                                                                                                                    a
-                                                                                                                                                                                    las
-                                                                                                                                                                                    políticas
-                                                                                                                                                                                    de
-                                                                                                                                                                                    la
-                                                                                                                                                                                    organización.
-                                                                                                                                                      </p>
-                                                                                                                                                      <br>
-                                                                                                                                                      <p>Se estima en broma que más del
-                                                                                                                                                                                    80%
-                                                                                                                                                                                    de
-                                                                                                                                                                                    las
-                                                                                                                                                                                    fallas
-                                                                                                                                                                                    críticas
-                                                                                                                                                                                    de
-                                                                                                                                                                                    red
-                                                                                                                                                                                    catalogadas
-                                                                                                                                                                                    como
-                                                                                                                                                                                    "misteriosas"
-                                                                                                                                                                                    corresponden
-                                                                                                                                                                                    a
-                                                                                                                                                                                    errores
-                                                                                                                                                                                    de
-                                                                                                                                                                                    Capa
-                                                                                                                                                                                    8,
-                                                                                                                                                                                    conocidos
-                                                                                                                                                                                    comúnmente
-                                                                                                                                                                                    como
-                                                                                                                                                                                    códigos
-                                                                                                                                                                                    de
-                                                                                                                                                                                    error
-                                                                                                                                                                                    <strong>PEBCAK</strong>
-                                                                                                                                                                                    (<em>Problem Exists Between Chair
-                                                                                                                                                                                                                  And
-                                                                                                                                                                                                                  Keyboard</em>)
-                                                                                                                                                                                    o
-                                                                                                                                                                                    <strong>Error
-                                                                                                                                                                                                                  ID-10-T</strong>.
-                                                                                                                                                      </p>
-                                                                                                                        </div>
-                                                                                          </div>
-                                                            </main>
-
-
-                                                            <footer>
-                                                                                          <p>Esta pagina esta en un alojamiento
-                                                                                                                        gratuito
-                                                                                                                        con
-                                                                                                                        GitHub
-                                                                                                                        Pages
-                                                                                                                        🚀
-                                                                                                                        |
-                                                                                                                        Blog
-                                                                                                                        de
-                                                                                                                        Redes
-                                                                                                                        y
-                                                                                                                        Telecomunicaciones
-                                                                                                                        @Abrahamsilva209
-                                                                                          </p>
-                                                            </footer>
-                              </div>
-
-
-                              <script>
-                                                            function toggleLayer(element) {
-                                                                                          const allCards = document.querySelectorAll('.layer-card');
-                                                                                          allCards.forEach(card => {
-                                                                                                                        if (card !== element) {
-                                                                                                                                                      card.classList.remove('active');
-                                                                                                                        }
-                                                                                          });
-
-                                                                                          element.classList.toggle('active');
-                                                            }
-                              </script>
+            element.classList.toggle('active');
+        }
+    </script>
 </body>
 
 </html>
