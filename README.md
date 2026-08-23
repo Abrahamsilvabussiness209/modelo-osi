@@ -7,9 +7,13 @@ Un sitio web interactivo tipo blog, moderno y ligero diseñado para estudiantes,
 ## 🚀 Características Principales
 
 - **Desglose Capa por Capa:** Explicación detallada y dinámica desde la Capa 1 (*Física*) hasta la Capa 7 (*Aplicación*).
+  
 - **Protocolos y Dispositivos:** Identificación rápida de los protocolos clave (TCP, IP, HTTP, DNS, etc.) y hardware (Routers, Switches, Hubs) asociados a cada nivel.
+  
 - **Manejo de la Capa 8 (Easter Egg):** Una sección especial dedicada con humor a la "Capa 8" (el factor humano, políticas y errores tipo *PEBCAK / ID-10-T*).
+  
 - **Diseño Responsivo & Dark Mode:** Interfaz moderna, limpia e intuitiva adaptada para dispositivos móviles y de escritorio.
+  
 - **Sin Dependencias:** Construido únicamente con **HTML5, CSS3 y JavaScript Vanilla** (sin frameworks ni librerías externas).
 
 ---
