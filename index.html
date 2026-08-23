@@ -165,6 +165,16 @@
             font-weight: bold;
         }
 
+        /* Estilo para secciones estáticas del blog */
+        .blog-section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
         footer {
             text-align: center;
             margin-top: 50px;
@@ -187,6 +197,19 @@
             <p>Haz clic en cualquier capa para explorar sus detalles, protocolos y dispositivos.</p>
         </header>
 
+        <!-- INTRODUCCIÓN DEL BLOG -->
+        <section class="blog-section" style="margin-bottom: 25px; border-top: 4px solid var(--accent-blue);">
+            <h2 style="color: var(--accent-blue); font-size: 1.6rem; margin-bottom: 12px;">
+                Comprendiendo la Arquitectura del Modelo OSI
+            </h2>
+            <p style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 10px;">
+                El <strong>Modelo de Interconexión de Sistemas Abiertos (OSI)</strong> es el pilar teórico esencial para comprender cómo viaja la información a través de una red de computadoras. Diseñado por la ISO en 1984, estandariza la comunicación dividiéndola en 7 capas conceptuales, garantizando que sistemas heterogéneos puedan intercambiar datos de forma transparente.
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+                A continuación, explora de forma interactiva cada una de las capas oficiales de la 1 a la 7 y descubre la famosa "Capa 8" del mundo informático.
+            </p>
+        </section>
+
         <main class="osi-stack">
             <!-- Capa 1 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -198,7 +221,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
-                    <p>Transmisión de bits crudos (0s y 1s) a través del medion físico (voltaje, impulsos de luz o ondas de radio).</p>
+                    <p>La Capa Física es el nivel básico (PDU: Bit) encargado de transportar secuencias de ceros y unos no estructurados a través del medio físico. Define especificaciones eléctricas, mecánicas y funcionales como voltajes, sincronización de bits, tipos de conectores y la velocidad de transmisión. Sin esta infraestructura física, la transmisión lógica sería imposible.</p>
                     <div class="badge-container">
                         <span class="badge">Cables UTP / Fibra Óptica</span>
                         <span class="badge">Hubs</span>
@@ -206,6 +229,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Capa 2 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -217,7 +241,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
-                    <p>Transfiere tramas de datos entre nodos en la misma red local. Maneja el direccionamiento físico (MAC).</p>
+                    <p>Estructura los bits en 'Tramas' (Frames) para una transferencia confiable entre dispositivos conectados a la misma red local. Utiliza direccionamiento físico (direcciones MAC) y se divide en las subcapas LLC (Logical Link Control) para control de flujo y MAC (Media Access Control) para gestionar el acceso al medio físico y detectar errores de transmisión.</p>
                     <div class="badge-container">
                         <span class="badge">Ethernet</span>
                         <span class="badge">Wi-Fi (802.11)</span>
@@ -226,6 +250,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Capa 3 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -237,7 +262,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
-                    <p>Determina la mejor ruta lógica (direccionamiento IP y enrutamiento) para enviar paquetes entre redes distintas.</p>
+                    <p>Asigna direccionamiento lógico (IP) y maneja el empaquetado de datos ('Paquetes') para enviarlos a través de diferentes redes interconectadas. Mediante algoritmos de enrutamiento dinámico y estático, determina la mejor ruta que debe seguir la información desde un origen hasta su destino final superando múltiples saltos de red.</p>
                     <div class="badge-container">
                         <span class="badge">IPv4 / IPv6</span>
                         <span class="badge">ICMP (Ping)</span>
@@ -245,6 +270,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Capa 4 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -256,7 +282,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
-                    <p>Garantiza la transferencia confiable o rápida de datos entre hosts. Define el control de flujo y la corrección de errores.</p>
+                    <p>Garantiza la comunicación end-to-end gestionando la transmisión mediante 'Segmentos' o 'Datagramas'. Utiliza números de puerto para dirigir el tráfico a aplicaciones específicas. Ofrece dos enfoques: TCP para transferencias totalmente seguras con control de errores y acuses de recibo, o UDP para servicios ultrarrápidos en tiempo real sin verificación de entregas.</p>
                     <div class="badge-container">
                         <span class="badge">TCP</span>
                         <span class="badge">UDP</span>
@@ -264,6 +290,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Capa 5 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -275,7 +302,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
-                    <p>Establece, gestiona y finaliza las conexiones (sesiones) entre las aplicaciones en ambos extremos.</p>
+                    <p>Encargada de coordinar, mantener, sincronizar y finalizar las conversaciones (sesiones) entre sistemas distribuidos. Permite insertar puntos de control (checkpoints) en transferencias de gran tamaño para que, en caso de interrupción de red, la transmisión pueda reanudarse exactamente desde el último punto guardado sin reiniciar el proceso.</p>
                     <div class="badge-container">
                         <span class="badge">NetBIOS</span>
                         <span class="badge">PPTP</span>
@@ -283,6 +310,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Capa 6 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -294,7 +322,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
-                    <p>Se encarga del formato, cifrado y compresión de los datos para que sean interpretables por la capa de aplicación.</p>
+                    <p>Sintetiza y traduce los datos para que el sistema emisor y receptor interpreten la información bajo el mismo formato, independientemente de sus arquitecturas. Es la encargada de tareas cruciales como la conversión de codificación de caracteres (ASCII/Unicode), la compresión de archivos multimedia y el cifrado/descifrado de datos de seguridad (TLS/SSL).</p>
                     <div class="badge-container">
                         <span class="badge">SSL / TLS</span>
                         <span class="badge">JPEG / PNG</span>
@@ -302,6 +330,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Capa 7 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -313,7 +342,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
-                    <p>Interfaz directa con las aplicaciones del usuario final. Proporciona servicios de red a las aplicaciones de software.</p>
+                    <p>Proporciona la interfaz y los protocolos de red necesarios para que las aplicaciones de usuario (navegadores, clientes de correo o servicios web) puedan enviar y recibir información. Define los estándares de comunicación de alto nivel mediante los cuales interactúan directamente los programas informáticos con la infraestructura de red subyacente.</p>
                     <div class="badge-container">
                         <span class="badge">HTTP / HTTPS</span>
                         <span class="badge">FTP</span>
@@ -323,25 +352,74 @@
                 </div>
             </div>
 
+
             <!-- Capa 8: Curiosidad -->
             <div class="layer-card layer-8" onclick="toggleLayer(this)">
                 <div class="layer-header">
                     <div>
-                        <span class="layer-number">Capa 8 <span class="easter-egg-tag">Curiosidad / No Oficial</span></span>
-                        <h2 class="layer-title">La Capa del Usuario (O Capa Política)</h2>
+                        <span class="layer-number">Capa 8 <span class="easter-egg-tag">¡Curiosidad!</span></span>
+                        <h2 class="layer-title">La Capa del Usuario <strong>"Entre la Silla y el Teclado"</strong></h2>
                     </div>
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
-                    <p>🤖 <strong>¿Sabías que...?</strong> En la cultura informática, la "Capa 8" se refiere sarcásticamente al <strong>ser humano</strong> que opera el equipo o a las políticas de la organización.</p>
+                    <p><strong>¿Sabías que...?</strong> En la cultura informática, la "Capa 8" se refiere sarcásticamente al error, que ocurre entre el monitor, teclado y la silla, es decir, el <strong>ser humano</strong> que opera el equipo, así como a las decisiones administrativas, financieras o políticas dentro de una organización. Aunque no existe formalmente en el estándar ISO, se considera una de las capas más críticas para la ciberseguridad y estabilidad de red.</p>
                     <br>
                     <p>Se estima en broma que más del 80% de las fallas críticas de red catalogadas como "misteriosas" corresponden a errores de Capa 8, conocidos comúnmente como códigos de error <strong>PEBCAK</strong> (<em>Problem Exists Between Chair And Keyboard</em>) o <strong>Error ID-10-T</strong>.</p>
                 </div>
             </div>
         </main>
 
+        <!-- FICHA MNEMOTÉCNICA Y COMPARATIVA OSI vs TCP/IP -->
+        <section class="blog-section" style="margin-top: 35px; border-top: 4px solid var(--accent-green);">
+            <h2 style="color: var(--accent-green); font-size: 1.5rem; margin-bottom: 15px;">
+                Comparacaión entre: Modelo OSI vs. TCP/IP
+            </h2>
+            <p style="margin-bottom: 15px;">
+                Para memorizar el orden de las capas de la <strong>Capa 7 a la Capa 1</strong> (Aplicación a Física), utiliza la famosa frase:
+            </p>
+            <blockquote style="background: #0f172a; padding: 12px; border-radius: 6px; border-left: 4px solid var(--accent-green); font-style: italic; color: var(--accent-green); margin-bottom: 20px;">
+                "<strong>A</strong>lgunos <strong>P</strong>rofesores <strong>S</strong>uelen <strong>T</strong>ener <strong>R</strong>espuestas <strong>E</strong>n <strong>F</strong>ácil"
+            </blockquote>
+
+            <h3 style="color: var(--accent-blue); font-size: 1.2rem; margin-bottom: 12px;">Equivalencia con la Pila TCP/IP (Uso Práctico)</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 15px;">
+                Mientras que OSI es un modelo teórico de 7 capas, la Internet actual funciona bajo el modelo <strong>TCP/IP</strong> de 4 capas:
+            </p>
+
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; text-align: left; font-size: 0.85rem;">
+                <div style="background: #0f172a; padding: 12px; border-radius: 6px; flex: 1; min-width: 200px; border: 1px solid #334155;">
+                    <strong style="color: var(--accent-blue); display: block; margin-bottom: 8px; text-align: center;">Modelo OSI (7 Capas)</strong>
+                    <p style="text-align: left; margin: 2px 0;">7. Aplicación</p>
+                    <p style="text-align: left; margin: 2px 0;">6. Presentación</p>
+                    <p style="text-align: left; margin: 2px 0;">5. Sesión</p>
+                    <p style="text-align: left; margin: 2px 0;">4. Transporte</p>
+                    <p style="text-align: left; margin: 2px 0;">3. Red</p>
+                    <p style="text-align: left; margin: 2px 0;">2. Enlace de Datos</p>
+                    <p style="text-align: left; margin: 2px 0;">1. Física</p>
+                </div>
+                <div style="background: #0f172a; padding: 12px; border-radius: 6px; flex: 1; min-width: 200px; border: 1px solid #334155;">
+                    <strong style="color: var(--accent-green); display: block; margin-bottom: 8px; text-align: center;">Modelo TCP/IP (4 Capas)</strong>
+                    <p style="text-align: left; margin: 2px 0; color: var(--accent-green);">1. Aplicación <span style="color: var(--text-muted); font-size: 0.75rem;">(Capas 7, 6 y 5)</span></p>
+                    <p style="text-align: left; margin: 2px 0; color: var(--accent-green);">2. Transporte <span style="color: var(--text-muted); font-size: 0.75rem;">(Capa 4)</span></p>
+                    <p style="text-align: left; margin: 2px 0; color: var(--accent-green);">3. Internet <span style="color: var(--text-muted); font-size: 0.75rem;">(Capa 3)</span></p>
+                    <p style="text-align: left; margin: 2px 0; color: var(--accent-green);">4. Acceso a la Red <span style="color: var(--text-muted); font-size: 0.75rem;">(Capas 2 y 1)</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARRAFO DE FINALIZACIÓN -->
+        <section class="blog-section" style="margin-top: 25px; border-top: 4px solid var(--accent-purple);">
+            <h2 style="color: var(--accent-purple); font-size: 1.4rem; margin-bottom: 10px;">
+                Conclusión
+            </h2>
+            <p style="font-size: 0.98rem;">
+                Aunque el modelo TCP/IP es el estándar dominante implementado en el software y hardware actual, el <strong>Modelo OSI sigue siendo la herramienta conceptual indispensable</strong> para estructurar ideas, diagnosticar fallas de red de manera metódica (desde el cable hasta la aplicación) y comprender el flujo universal de la información. Dominar este marco teórico es el primer paso fundamental para cualquier profesional de las telecomunicaciones, ciberseguridad o desarrollo de sistemas.
+            </p>
+        </section>
+
         <footer>
-            <p>Esta pagina esta en un alojamiento gratuito con GitHub Pages 🚀 | Blog de Redes y Telecomunicaciones @Abrahamsilva209</p>
+            <p>GitHub Pages | Blog de @Abrahamsilva209 ®2026 </p>
         </footer>
     </div>
 
