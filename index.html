@@ -11,6 +11,7 @@
             --accent-blue: #38bdf8;
             --accent-green: #4ade80;
             --accent-purple: #c084fc;
+            --accent-orange: #fb923c;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
         }
@@ -21,6 +22,9 @@
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Verdana, Geneva, Tahoma, sans-serif;
         }
+
+
+        /*Esilo para el cuerpo de la pagina del blog*/
 
         body {
             background-color: var(--bg-color);
@@ -35,10 +39,12 @@
 
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             padding: 20px 0;
         }
 
+
+        /*Encabezado h1*/
         header h1 {
             font-size: 2.5rem;
             color: var(--accent-blue);
@@ -52,11 +58,43 @@
             text-align: center;
         }
 
+
+        /*Estilos fijos para los containers de información*/
+
         .container {
             max-width: 900px;
             width: 100%;
             margin: 0 auto;
             text-align: center;
+        }
+
+        /* Botones de Control de Interacción */
+        .controls-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+
+        /*Botones de acción*/
+
+        .btn-action {
+            background-color: var(--card-bg);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: center;
+        }
+
+        .btn-action:hover {
+            background-color: var(--accent-blue);
+            color: var(--bg-color);
         }
 
         .osi-stack {
@@ -145,7 +183,22 @@
             font-weight: 600;
         }
 
-        /* Estilo para la Capa 8 */
+        /* Etiqueta PDU (Protocol Data Unit) */
+
+        .pdu-tag {
+            background-color: rgba(251, 146, 60, 0.15);
+            color: var(--accent-orange);
+            border: 1px solid var(--accent-orange);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* Estilos reservados para la Capa 8 */
+
         .layer-8 {
             border-left-color: var(--accent-purple);
             background: linear-gradient(135deg, #1e293b 0%, #2e1065 100%);
@@ -166,6 +219,7 @@
         }
 
         /* Estilo para secciones estáticas del blog */
+
         .blog-section {
             background-color: var(--card-bg);
             border-radius: 8px;
@@ -173,6 +227,36 @@
             width: 100%;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Cuadrícula de Diagnóstico */
+        
+        .troubleshooting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .trouble-card {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .trouble-card h4 {
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .trouble-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: left;
         }
 
         footer {
@@ -197,7 +281,7 @@
             <p>Haz clic en cualquier capa para explorar sus detalles, protocolos y dispositivos.</p>
         </header>
 
-        <!-- INTRODUCCIÓN DEL BLOG -->
+        <!-- Intro del Blog -->
         <section class="blog-section" style="margin-bottom: 25px; border-top: 4px solid var(--accent-blue);">
             <h2 style="color: var(--accent-blue); font-size: 1.6rem; margin-bottom: 12px;">
                 Comprendiendo la Arquitectura del Modelo OSI
@@ -210,6 +294,12 @@
             </p>
         </section>
 
+        <!-- Botones de Expandir / Colapsar -->
+        <div class="controls-container">
+            <button class="btn-action" onclick="expandAll()">Expandir Todo</button>
+            <button class="btn-action" onclick="collapseAll()">Colapsar Todo</button>
+        </div>
+
         <main class="osi-stack">
             <!-- Capa 1 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -221,7 +311,8 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
-                    <p>La Capa Física es el nivel básico (PDU: Bit) encargado de transportar secuencias de ceros y unos no estructurados a través del medio físico. Define especificaciones eléctricas, mecánicas y funcionales como voltajes, sincronización de bits, tipos de conectores y la velocidad de transmisión. Sin esta infraestructura física, la transmisión lógica sería imposible.</p>
+                    <span class="pdu-tag">PDU: Bit</span>
+                    <p>La Capa Física es el nivel básico encargado de transportar secuencias de ceros y unos no estructurados a través del medio físico. Define especificaciones eléctricas, mecánicas y funcionales como voltajes, sincronización de bits, tipos de conectores y la velocidad de transmisión. Sin esta infraestructura física, la transmisión lógica sería imposible.</p>
                     <div class="badge-container">
                         <span class="badge">Cables UTP / Fibra Óptica</span>
                         <span class="badge">Hubs</span>
@@ -229,7 +320,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Capa 2 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -241,6 +331,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
+                    <span class="pdu-tag">PDU: Trama (Frame)</span>
                     <p>Estructura los bits en 'Tramas' (Frames) para una transferencia confiable entre dispositivos conectados a la misma red local. Utiliza direccionamiento físico (direcciones MAC) y se divide en las subcapas LLC (Logical Link Control) para control de flujo y MAC (Media Access Control) para gestionar el acceso al medio físico y detectar errores de transmisión.</p>
                     <div class="badge-container">
                         <span class="badge">Ethernet</span>
@@ -250,7 +341,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Capa 3 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -262,6 +352,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
+                    <span class="pdu-tag">PDU: Paquete (Packet)</span>
                     <p>Asigna direccionamiento lógico (IP) y maneja el empaquetado de datos ('Paquetes') para enviarlos a través de diferentes redes interconectadas. Mediante algoritmos de enrutamiento dinámico y estático, determina la mejor ruta que debe seguir la información desde un origen hasta su destino final superando múltiples saltos de red.</p>
                     <div class="badge-container">
                         <span class="badge">IPv4 / IPv6</span>
@@ -270,7 +361,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Capa 4 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -282,6 +372,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
+                    <span class="pdu-tag">PDU: Segmento (TCP) / Datagrama (UDP)</span>
                     <p>Garantiza la comunicación end-to-end gestionando la transmisión mediante 'Segmentos' o 'Datagramas'. Utiliza números de puerto para dirigir el tráfico a aplicaciones específicas. Ofrece dos enfoques: TCP para transferencias totalmente seguras con control de errores y acuses de recibo, o UDP para servicios ultrarrápidos en tiempo real sin verificación de entregas.</p>
                     <div class="badge-container">
                         <span class="badge">TCP</span>
@@ -290,7 +381,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Capa 5 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -302,6 +392,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
+                    <span class="pdu-tag">PDU: Datos (Data)</span>
                     <p>Encargada de coordinar, mantener, sincronizar y finalizar las conversaciones (sesiones) entre sistemas distribuidos. Permite insertar puntos de control (checkpoints) en transferencias de gran tamaño para que, en caso de interrupción de red, la transmisión pueda reanudarse exactamente desde el último punto guardado sin reiniciar el proceso.</p>
                     <div class="badge-container">
                         <span class="badge">NetBIOS</span>
@@ -310,7 +401,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Capa 6 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -322,6 +412,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
+                    <span class="pdu-tag">PDU: Datos (Data)</span>
                     <p>Sintetiza y traduce los datos para que el sistema emisor y receptor interpreten la información bajo el mismo formato, independientemente de sus arquitecturas. Es la encargada de tareas cruciales como la conversión de codificación de caracteres (ASCII/Unicode), la compresión de archivos multimedia y el cifrado/descifrado de datos de seguridad (TLS/SSL).</p>
                     <div class="badge-container">
                         <span class="badge">SSL / TLS</span>
@@ -330,7 +421,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Capa 7 -->
             <div class="layer-card" onclick="toggleLayer(this)">
@@ -342,6 +432,7 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
+                    <span class="pdu-tag">PDU: Datos (Data)</span>
                     <p>Proporciona la interfaz y los protocolos de red necesarios para que las aplicaciones de usuario (navegadores, clientes de correo o servicios web) puedan enviar y recibir información. Define los estándares de comunicación de alto nivel mediante los cuales interactúan directamente los programas informáticos con la infraestructura de red subyacente.</p>
                     <div class="badge-container">
                         <span class="badge">HTTP / HTTPS</span>
@@ -351,7 +442,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Capa 8: Curiosidad -->
             <div class="layer-card layer-8" onclick="toggleLayer(this)">
@@ -363,17 +453,17 @@
                     <span>▼</span>
                 </div>
                 <div class="layer-details">
-                    <p><strong>¿Sabías que...?</strong> En la cultura informática, la "Capa 8" se refiere sarcásticamente al error, que ocurre entre el monitor, teclado y la silla, es decir, el <strong>ser humano</strong> que opera el equipo, así como a las decisiones administrativas, financieras o políticas dentro de una organización. Aunque no existe formalmente en el estándar ISO, se considera una de las capas más críticas para la ciberseguridad y estabilidad de red.</p>
+                    <p><strong>¿Sabías que...?</strong> En la cultura informática, la "Capa 8" se refiere sarcásticamente al error que ocurre entre el monitor, teclado y la silla, es decir, el <strong>ser humano</strong> que opera el equipo, así como a las decisiones administrativas, financieras o políticas dentro de una organización. Aunque no existe formalmente en el estándar ISO, se considera una de las capas más críticas para la ciberseguridad y estabilidad de red.</p>
                     <br>
                     <p>Se estima en broma que más del 80% de las fallas críticas de red catalogadas como "misteriosas" corresponden a errores de Capa 8, conocidos comúnmente como códigos de error <strong>PEBCAK</strong> (<em>Problem Exists Between Chair And Keyboard</em>) o <strong>Error ID-10-T</strong>.</p>
                 </div>
             </div>
         </main>
 
-        <!-- FICHA MNEMOTÉCNICA Y COMPARATIVA OSI vs TCP/IP -->
+        <!-- Ficha Memotécnica y Comparativa OSI vs TCP/IP -->
         <section class="blog-section" style="margin-top: 35px; border-top: 4px solid var(--accent-green);">
             <h2 style="color: var(--accent-green); font-size: 1.5rem; margin-bottom: 15px;">
-                Comparacaión entre: Modelo OSI vs. TCP/IP
+                Comparación entre: Modelo OSI vs. TCP/IP
             </h2>
             <p style="margin-bottom: 15px;">
                 Para memorizar el orden de las capas de la <strong>Capa 7 a la Capa 1</strong> (Aplicación a Física), utiliza la famosa frase:
@@ -408,7 +498,35 @@
             </div>
         </section>
 
-        <!-- PARRAFO DE FINALIZACIÓN -->
+        <!-- Sección de diagnostico práctico de fallas -->
+        <section class="blog-section" style="margin-top: 25px; border-top: 4px solid var(--accent-orange);">
+            <h2 style="color: var(--accent-orange); font-size: 1.4rem; margin-bottom: 10px;">
+                Diagnóstico de Redes con el Modelo OSI (Troubleshooting)
+            </h2>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">
+                La mayor ventaja práctica del modelo OSI es aislar fallas sistemáticamente. Si la red falla, los ingenieros diagnostican de abajo hacia arriba (Capa 1 a 7):
+            </p>
+            <div class="troubleshooting-grid">
+                <div class="trouble-card">
+                    <h4>Capa 1 (Física)</h4>
+                    <p>Cable de red desconectado, fibra óptica doblada o interfaz de red dañada.</p>
+                </div>
+                <div class="trouble-card">
+                    <h4>Capa 2 (Enlace)</h4>
+                    <p>Error en la dirección MAC, conflicto de VLAN o fallo en el switch local.</p>
+                </div>
+                <div class="trouble-card">
+                    <h4>Capa 3 (Red)</h4>
+                    <p>Dirección IP o Máscara de subred errónea, falla de Gateway o enrutador.</p>
+                </div>
+                <div class="trouble-card" style="grid-column: 2;">
+                    <h4>Capa 7 (Aplicación)</h4>
+                    <p>Falla en resolución DNS, servidor caído (HTTP 500) o credenciales incorrectas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Despedida o cierre de la pagina del blog -->
         <section class="blog-section" style="margin-top: 25px; border-top: 4px solid var(--accent-purple);">
             <h2 style="color: var(--accent-purple); font-size: 1.4rem; margin-bottom: 10px;">
                 Conclusión
@@ -433,6 +551,17 @@
             });
 
             element.classList.toggle('active');
+        }
+
+        /* Funciones de control V3.0 */
+        function expandAll() {
+            const allCards = document.querySelectorAll('.layer-card');
+            allCards.forEach(card => card.classList.add('active'));
+        }
+
+        function collapseAll() {
+            const allCards = document.querySelectorAll('.layer-card');
+            allCards.forEach(card => card.classList.remove('active'));
         }
     </script>
 </body>
